@@ -1,0 +1,9 @@
+FROM golang:1.22-alpine AS build
+WORKDIR /src
+COPY go.mod ./
+RUN go mod download || true
+COPY . .
+RUN CGO_ENABLED=0 go build -o /out/client ./cmd/client
+
+FROM alpine:3.19
+COPY --from=build /out/client /usr/local/bin/client

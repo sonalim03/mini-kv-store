@@ -1,0 +1,5 @@
+*.exe
+data/
+dataA/
+dataB/
+*.wal
